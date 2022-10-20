@@ -9,6 +9,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -19,7 +21,7 @@ import android.widget.SeekBar;
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
-    Button button;
+    Button button, button2, button3, button4;
     SeekBar seekBar1, seekBar2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         seekBar1 = findViewById(R.id.seekBar2);
         seekBar2 = findViewById(R.id.seekBar3);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
 
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{
@@ -75,6 +80,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.setColorFilter(Color.argb(150, 155, 155, 155),   PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.setColorFilter(Color.argb(150,0,255,0), PorterDuff.Mode.SRC_ATOP);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.setColorFilter(Color.argb(150, 255, 0, 0), PorterDuff.Mode.SRC_ATOP);
             }
         });
     }
